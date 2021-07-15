@@ -19,3 +19,4 @@ docker run \
   -v "$MONGO_DATADIR":/data/db \
   mongo:3.4
 
+#docker run --name mongodb -d --restart always -e TITLE=mongodb -p 27017:27017 -v C:\teste_pasta_docker\mongo:/data/db mongo:3.4

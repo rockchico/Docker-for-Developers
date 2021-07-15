@@ -15,6 +15,6 @@
     "wait-on": "^4.0.1"
   },
   "scripts": {
-    "start": "HOSTIP=127.0.0.1 ./node_modules/.bin/nodemon ./index.js"
+    "start": "HOSTIP=127.0.0.1 nodemon ./index.js"
   }
 }

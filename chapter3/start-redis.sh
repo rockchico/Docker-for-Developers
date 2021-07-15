@@ -32,3 +32,4 @@ docker run \
   -p 6379:6379 \
   $SERVICE
 
+#docker run --name redis -d --restart always -e TITLE=redis -p 6379:6379 redis

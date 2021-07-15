@@ -2,7 +2,7 @@
 FROM debian
 
 # set timezone so files' timestamps are correct
-ENV TZ=America/Los_Angeles
+ENV TZ=America/Sao_Paulo
 
 # install apache and php 7.3
 # we include procps and telnet so you can use these with shell.sh prompt

@@ -8,7 +8,7 @@ process.env.DEBUG = "publisher,mqtt-traffic";
 const debug = require("debug")("publisher"),
   debugm = require("debug")("mqtt-traffic"),
   MQTT = require("mqtt"),
-  host = `mqtt://${process.env.HOSTIP}`,
+  host = `mqtt://192.168.0.8`,
   port = 1883,
   client = MQTT.connect(host, port);
 

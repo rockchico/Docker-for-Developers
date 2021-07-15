@@ -27,6 +27,8 @@ docker pull matteocollina/$SERVICE
 # Mosca enables MQTT over WebSocket so you can MQTT pub/sub in the browser.
 # To support browser access, we need to expose port 80.
 
+#docker run --name mosca -d --restart always -e TITLE=mosca -p 1883:1883 -p 80:80 -v C:\teste_pasta_docker\mosca:/db matteocollina/mosca
+
 docker run \
   --name $SERVICE \
   -d \

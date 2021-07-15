@@ -7,12 +7,12 @@ services:
   mongodb:
     image: mongo
     volumes:
-      - /tmp/mongo:/data/db
+      - ${PASTA_MONGO}:/data/db
 
   mosca:
     image: matteocollina/mosca
     volumes:
-      - /tmp/mosca:/db
+      - ${PASTA_MOSCA}:/db
 
   publisher:
     build: publisher

@@ -1,21 +1,17 @@
-# we will inherit from the NodeJS v13 image on DockerHub
-FROM node:13
+# we will inherit from the NodeJS v12 alpine OS image on DockerHub
 
-# set timezone so files' timestamps are correct
+FROM node:12-alpine
 ENV TZ=America/Los_Angeles
 
-# install needed system programs
-# we include procps and telnet so you can use these with shell.sh prompt
-RUN apt-get update -qq >/dev/null && apt-get install -y -qq curl procps telnet >/dev/null
-
 # add a user - this user will own the files in /home/app
-RUN useradd --user-group --create-home --shell /bin/false app
+RUN adduser -S app
 
-# set up and copy files to /home/app
-ENV HOME=/usr/app
+ENV HOME=/home/app
 WORKDIR /home/app
 COPY . /home/app
-RUN yarn install
+# remove this following line when using a volume for node_modules
+#RUN yarn install
+RUN yarn global add nodemon
 
-# we run a script to stat the server; the array syntax makes it so ^C will work as we want
+# we run a script to start the server; the array syntax makes it so ^C will work as we want
 CMD  ["yarn", "start"]

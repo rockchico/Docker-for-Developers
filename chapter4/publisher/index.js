@@ -17,19 +17,19 @@ const debug = require("debug")("publisher"),
  */
 const waitOn = require("wait-on"),
   wait_for_services = async () => {
-  try {
-    await waitOn({ resources: [`tcp:${mqtt_host}:${mqtt_port}`] });
-  } catch (e) {
-    debug("waitOn exception", e.stack);
-  }
-};
+    try {
+      await waitOn({ resources: [`tcp:${mqtt_host}:${mqtt_port}`] });
+    } catch (e) {
+      debug("waitOn exception", e.stack);
+    }
+  };
 
 const main = async () => {
   debug(`publisher miscroservice, about to wait for MQTT host(${mqtt_host}, ${mqtt_port}`);
   await wait_for_services();
   debug("---> wait succeeded");
   const MQTT = require("mqtt"),
-   mqtt = MQTT.connect(mqttUrl, mqtt_port);
+    mqtt = MQTT.connect(mqttUrl, mqtt_port);
 
   debug("publisher connecting to MQTT", mqttUrl);
   mqtt.on("connect", async () => {
@@ -54,8 +54,8 @@ const main = async () => {
           res.dbtype == "mongodb"
             ? "checked"
             : redis_checked === "checked"
-            ? ""
-            : "checked";
+              ? ""
+              : "checked";
       //    debug(`message(${message})`);
       res.send(`
     <html>
@@ -63,7 +63,7 @@ const main = async () => {
         <title>Publisher</title>
       </head>
       <body>
-        <h1>Publisher</h1>
+        <h1>Publisher 123</h1>
         <form action="/post">
           <div><input type="radio" ${mongo_checked} name="dbtype" value="mongodb">MongoDB</input></div>
           <div><input type="radio" ${redis_checked} name="dbtype" value="redis">Redis</input></div>

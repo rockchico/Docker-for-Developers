@@ -7,13 +7,13 @@ process.env.DEBUG = "subscriber";
 
 const debug = require("debug")("subscriber"),
   MongoClient = require("mongodb").MongoClient,
-  mongoUrl = `mongodb://${process.env.HOSTIP}:27017`,
+  mongoUrl = `mongodb://192.168.0.8:27017`,
   mongoDB = "book",
   mongo = new MongoClient(mongoUrl),
   MQTT = require("mqtt"),
-  mqttHost = `mqtt://${process.env.HOSTIP}`,
+  mqttHost = `mqtt://192.168.0.8`,
   mqttPort = 1883,
-  redisHost = `redis://${process.env.HOSTIP}`;
+  redisHost = `redis://192.168.0.8`;
 
 var Redis = require("async-redis"),
   redis = Redis.createClient(redisHost);
@@ -21,7 +21,7 @@ var Redis = require("async-redis"),
 // if you'd like to select database 3, instead of 0 (default), call
 // client.select(3, function() { /* ... */ });
 
-redis.on("error", function(err) {
+redis.on("error", function (err) {
   debug("REDIS Error " + err);
 });
 
@@ -130,7 +130,7 @@ const topics = {
 
 // Use connect method to connect to the Server
 debug("connecting to MongoDB", mongoUrl);
-mongo.connect(function(err) {
+mongo.connect(function (err) {
   if (err) {
     debug("MongoDB connect error:", err);
     process.exit(1);
@@ -156,7 +156,7 @@ mongo.connect(function(err) {
       message = message.toString();
       try {
         message = JSON.parse(message);
-      } catch (e) {}
+      } catch (e) { }
       debug("<<< topic", topic, "message", message);
       const f = topics[topic];
       if (f !== undefined) {

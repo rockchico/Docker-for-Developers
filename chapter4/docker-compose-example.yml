@@ -1,26 +1,31 @@
 # Simple docker complse override configuration file for chapter4/ application
 
+# .env contem as variáveis HOSTIP
+# para conferir se está tudo certo
+# docker-compose -f .\docker-compose-example.yml config
+
+
 version: '3'
 services:
 
   redis:
     image: redis
     volumes:
-      - /tmp/redis:/data
+      - ${PASTA_REDIS}:/data
     ports:
       - 6379:6379
 
   mongodb:
     image: mongo
     volumes:
-      - /tmp/mongo:/data/db
+      - ${PASTA_MONGO}:/data/db
     ports:
       - 27017:27017
 
   mosca:
     image: matteocollina/mosca
     volumes:
-      - /tmp/mosca:/db
+      - ${PASTA_MOSCA}:/db
     ports:
       - 1883:1883
       - 80:80
